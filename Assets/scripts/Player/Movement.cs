@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
 
     public float speed = 20f;
 
+    public bool canMove;
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -19,9 +21,12 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        vertical = Input.GetAxisRaw("Vertical");
+        if(canMove){
+            horizontal = Input.GetAxisRaw("Horizontal");
+            vertical = Input.GetAxisRaw("Vertical");
+        }
     }
+
 
     private void FixedUpdate()
     {

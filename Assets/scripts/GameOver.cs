@@ -7,6 +7,6 @@ using UnityEngine.SceneManagement;
 public class GameOver : MonoBehaviour
 {
     public void Restart() {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Menu");
     }
 }
