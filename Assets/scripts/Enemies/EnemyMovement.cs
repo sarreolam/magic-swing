@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float speed;
+    private Rigidbody2D enemyPrefab;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        enemyPrefab = GetComponent<Rigidbody2D>();
+        enemyPrefab.velocity = -transform.right * speed;
     }
 }

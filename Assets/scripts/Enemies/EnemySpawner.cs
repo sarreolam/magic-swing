@@ -9,20 +9,20 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
     private bool canSpawn=true;
 
-  
     void Update()
     {
         if (canSpawn)
         {
             StartCoroutine(spawnEnemy());
         }
+    
 
     }
 
     IEnumerator spawnEnemy()
     {
         canSpawn = false;
-        Instantiate(enemyPrefab, spawnPoints[Random.Range(0, 3)]);
+        Instantiate(enemyPrefab, spawnPoints[Random.Range(0, 3)].transform.position,spawnPoints[Random.Range(0, 3)].transform.rotation , null);
         yield return new WaitForSeconds(spawnInterval);
         canSpawn = true;
     }

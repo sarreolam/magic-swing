@@ -30,7 +30,6 @@ public class textBoxManager : MonoBehaviour
         }
 
         if(endAtLine == 0){
-            Debug.Log(textLines.Length);
             endAtLine = textLines.Length - 1;
         }        
 
