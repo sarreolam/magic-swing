@@ -13,16 +13,22 @@ public class EnemySpawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            StartCoroutine(spawnEnemy());
+            StartCoroutine(spawnEnemy(Random.Range(0,3), Random.Range(0, 2)));
         }
     
 
     }
 
-    IEnumerator spawnEnemy()
+    IEnumerator spawnEnemy(int spawner, int enemyType)
     {
         canSpawn = false;
-        Instantiate(enemyPrefab, spawnPoints[Random.Range(0, 3)].transform.position,spawnPoints[Random.Range(0, 3)].transform.rotation , null);
+        if (enemyType == 0)
+        {
+            Instantiate(enemyPrefab, spawnPoints[spawner].transform.position,spawnPoints[spawner].transform.rotation , null);
+        }else if(enemyType == 1)
+        {
+            Instantiate(enemyPrefab, spawnPoints[spawner].transform.position,spawnPoints[spawner].transform.rotation , spawnPoints[spawner].transform);
+        }
         yield return new WaitForSeconds(spawnInterval);
         canSpawn = true;
     }
