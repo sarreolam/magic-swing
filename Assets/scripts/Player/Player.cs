@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
     Rigidbody2D player;
 
@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
     float vertical;
 
     public float speed = 20f;
+    public float maxHealth = 173f;
+    public float currentHealth;
 
     public bool canMove;
 
@@ -19,23 +21,25 @@ public class Movement : MonoBehaviour
     public Collider2D leftBoundary;
     public Collider2D rightBoundary;
 
-
+    public Health healthbar;
+    public MenuManager menuManager;
 
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        healthbar.SetMaxHealth(maxHealth);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(canMove){
 
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
-
-
-            
+        }
+        if(currentHealth <= 0){
+            menuManager.GameOver();
         }
     }
 
@@ -45,7 +49,6 @@ public class Movement : MonoBehaviour
         Vector2 movement = new Vector2(horizontal * speed, vertical * speed);
         player.velocity = movement;
 
-        // Clamp the player's position within the boundary
         ClampPlayerWithinBounds();
     }
     private void ClampPlayerWithinBounds()
@@ -67,6 +70,14 @@ public class Movement : MonoBehaviour
         player.position = clampedPosition;
     }
 
-
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("enemy"))
+        {
+            currentHealth -= 23;
+            healthbar.SetHealth(currentHealth);
+            Destroy(collision.gameObject);
+        }
+    }
 
 }

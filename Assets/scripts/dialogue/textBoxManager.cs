@@ -9,7 +9,7 @@ public class textBoxManager : MonoBehaviour
     public GameObject textBox;
     public TextMeshProUGUI theText;
 
-    public Movement player;
+    public Player player;
     public TextAsset textFile;
     public string[] textLines;
     
@@ -19,12 +19,14 @@ public class textBoxManager : MonoBehaviour
     public bool isActive;
     public bool stopPlayerMovement;
 
+    public float health = 170;
+
     //public PlayerController player;
 
     void Start()
     {
         //player = FindObjectOfType<PlayerController>;
-        player = FindObjectOfType<Movement>();
+        player = FindObjectOfType<Player>();
         if(textFile != null){
             textLines = (textFile.text.Split('\n'));
         }
