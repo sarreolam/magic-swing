@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 840616216}
   - component: {fileID: 840616215}
   m_Layer: 0
-  m_Name: Marco4
+  m_Name: sunGraphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

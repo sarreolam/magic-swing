@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
+    public float health=20;
     private Rigidbody2D enemyPrefab;
 
     void Start()
@@ -17,8 +18,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("bullet"))
         {
-            Destroy(this.gameObject);
+            health -= 5;
             Destroy(collision.gameObject);
+            if(health<=0){
+                Destroy(this.gameObject);
+            }
         }
         if (collision.transform.parent != null)
         {
