@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float currentHealth;
 
     public bool canMove;
+   
 
 
     public Collider2D topBoundary;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     public Health healthbar;
     public MenuManager menuManager;
+    public AudioSource hitSound;
 
     void Start()
     {
@@ -34,7 +36,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(canMove){
-
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
         }
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy"))
         {
             currentHealth -= 23;
+            hitSound.Play();
             healthbar.SetHealth(currentHealth);
             Destroy(collision.gameObject);
         }

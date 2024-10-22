@@ -12,12 +12,14 @@ public class Shooting : MonoBehaviour
     private GameObject bulletToDestroy;
     private bool canShoot = true;
     public float fireRate;
+    public AudioSource shooting;
 
     void Update()
     {
         if (Input.GetButton("Fire1")){
             if(canShoot){
                 StartCoroutine(destroyBullet());
+                shooting.Play();
             }
         }
     }
