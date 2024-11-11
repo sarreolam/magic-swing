@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   health: 20
+  scoreManager: {fileID: 0}
 --- !u!61 &6382816961296998694
 BoxCollider2D:
   m_ObjectHideFlags: 0

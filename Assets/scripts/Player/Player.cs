@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
 
     public bool canMove;
    
-
-
     public Collider2D topBoundary;
     public Collider2D bottomBoundary;
     public Collider2D leftBoundary;
@@ -82,4 +80,5 @@ public class Player : MonoBehaviour
         }
     }
 
+    
 }

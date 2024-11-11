@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     public float spawnInterval;
     public Transform[] spawnPoints;
-    private bool canSpawn=true;
+    public bool canSpawn=true;
 
     void Update()
     {
@@ -15,8 +15,6 @@ public class EnemySpawner : MonoBehaviour
         {
             StartCoroutine(spawnEnemy(Random.Range(0,3), Random.Range(0, 2)));
         }
-    
-
     }
 
     IEnumerator spawnEnemy(int spawner, int enemyType)

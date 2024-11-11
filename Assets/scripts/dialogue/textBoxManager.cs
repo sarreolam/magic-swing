@@ -8,8 +8,10 @@ public class textBoxManager : MonoBehaviour
 {
     public GameObject textBox;
     public TextMeshProUGUI theText;
+    public TextMeshProUGUI theSpeaker;
 
     public Player player;
+    public EnemySpawner enemySpawner;
     public TextAsset textFile;
     public string[] textLines;
     
@@ -19,14 +21,14 @@ public class textBoxManager : MonoBehaviour
     public bool isActive;
     public bool stopPlayerMovement;
 
-    public float health = 170;
-
     //public PlayerController player;
 
     void Start()
     {
         //player = FindObjectOfType<PlayerController>;
         player = FindObjectOfType<Player>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
+
         if(textFile != null){
             textLines = (textFile.text.Split('\n'));
         }
@@ -40,7 +42,7 @@ public class textBoxManager : MonoBehaviour
         } else {
             DisableTextBox();
         }
-
+    
     }
 
     void Update()
@@ -49,9 +51,10 @@ public class textBoxManager : MonoBehaviour
             return;
         }
 
-        theText.text = textLines[currentLine];
-        if(Input.GetKeyDown(KeyCode.Space) && currentLine < endAtLine){
-            currentLine += 1;
+        theSpeaker.text = textLines[currentLine];
+        theText.text = textLines[currentLine+1];
+        if (Input.GetKeyDown(KeyCode.Space) && currentLine < endAtLine){
+            currentLine += 2;
         }
 
         if(currentLine == endAtLine){
@@ -62,6 +65,7 @@ public class textBoxManager : MonoBehaviour
     public void EnableTextBox(){
         textBox.SetActive(true);
         isActive = true;
+        enemySpawner.canSpawn=false;
         if(stopPlayerMovement){
             player.canMove = false;
         }
@@ -71,6 +75,7 @@ public class textBoxManager : MonoBehaviour
     public void DisableTextBox(){
         textBox.SetActive(false);
         isActive = false;
+        enemySpawner.canSpawn=true;
         player.canMove = true;
     }
 

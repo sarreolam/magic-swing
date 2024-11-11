@@ -7,11 +7,17 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     public float health=20;
     private Rigidbody2D enemyPrefab;
+    
+    public ScoreManager scoreManager;
 
     void Start()
     {
         enemyPrefab = GetComponent<Rigidbody2D>();
         enemyPrefab.velocity = -transform.right * speed;
+        if (scoreManager == null)
+        {
+        scoreManager = FindObjectOfType<ScoreManager>(); 
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -22,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
             Destroy(collision.gameObject);
             if(health<=0){
                 Destroy(this.gameObject);
+                scoreManager.IncreaseScore();
             }
         }
         if (collision.transform.parent != null)
@@ -32,6 +39,6 @@ public class EnemyMovement : MonoBehaviour
 
             }
         }
-
     }
+    
 }
