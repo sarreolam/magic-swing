@@ -7,21 +7,41 @@ public class EnemyMovement : MonoBehaviour
     public float speed;
     public float health=20;
     private Rigidbody2D enemyPrefab;
+    public GameObject player;
+
+    private int enemyType;
     
     public ScoreManager scoreManager;
 
     void Start()
     {
         enemyPrefab = GetComponent<Rigidbody2D>();
-        enemyPrefab.velocity = -transform.right * speed;
+        enemyType = Random.Range(0, 0);
+
         if (scoreManager == null)
         {
-        scoreManager = FindObjectOfType<ScoreManager>(); 
+            scoreManager = FindObjectOfType<ScoreManager>(); 
+        }
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player"); 
+        }
+    }
+
+
+    private void Update()
+    {
+        if (enemyType == 0)
+        {
+            Vector2 direction = (player.transform.position - transform.position).normalized;
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+
+
         if (collision.gameObject.CompareTag("bullet"))
         {
             health -= 5;
@@ -39,6 +59,9 @@ public class EnemyMovement : MonoBehaviour
 
             }
         }
+        
     }
     
 }
+
+

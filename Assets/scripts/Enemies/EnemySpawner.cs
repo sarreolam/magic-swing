@@ -6,27 +6,26 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnInterval;
-    public Transform[] spawnPoints;
     public bool canSpawn=true;
 
     void Update()
     {
         if (canSpawn)
         {
-            StartCoroutine(spawnEnemy(Random.Range(0,3), Random.Range(0, 2)));
+            StartCoroutine(spawnEnemy());
+
         }
     }
 
-    IEnumerator spawnEnemy(int spawner, int enemyType)
+    IEnumerator spawnEnemy()
     {
         canSpawn = false;
-        if (enemyType == 0)
+        for (int i = 0; i < 6; i++)
         {
-            Instantiate(enemyPrefab, spawnPoints[spawner].transform.position,spawnPoints[spawner].transform.rotation , null);
-        }else if(enemyType == 1)
-        {
-            Instantiate(enemyPrefab, spawnPoints[spawner].transform.position,spawnPoints[spawner].transform.rotation , spawnPoints[spawner].transform);
+        Instantiate(enemyPrefab, transform.position + new Vector3(0,Random.Range(-5,5), 0), Quaternion.identity);
+            yield return new WaitForSeconds(0.25f);
         }
+
         yield return new WaitForSeconds(spawnInterval);
         canSpawn = true;
     }
