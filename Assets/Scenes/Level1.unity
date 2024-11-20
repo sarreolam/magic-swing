@@ -393,6 +393,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61fe56ab9791ccc458166bff234541ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &654044562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654044563}
+  - component: {fileID: 654044564}
+  m_Layer: 0
+  m_Name: enemyUpSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &654044563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654044562}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 864195262}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &654044564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654044562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7158e2b4060c6f408ea1fbe4be09261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8836420725665616122, guid: a24a62b7aee8c9a49b47069e1a2da1f6, type: 3}
+  spawnInterval: 5
+  canSpawn: 1
 --- !u!1 &718089370
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +737,7 @@ Transform:
   - {fileID: 636699353}
   - {fileID: 1657236159}
   - {fileID: 1126829604}
+  - {fileID: 654044563}
   - {fileID: 2035920207}
   - {fileID: 718089371}
   m_Father: {fileID: 0}
@@ -2300,6 +2348,7 @@ MonoBehaviour:
   theSpeaker: {fileID: 1010856382}
   player: {fileID: 1019085768}
   enemySpawner: {fileID: 1126829603}
+  enemyUpSpawner: {fileID: 0}
   textFile: {fileID: 4900000, guid: 55592f8c7545a2045b3e414e887dc3bb, type: 3}
   textLines: []
   currentLine: 0

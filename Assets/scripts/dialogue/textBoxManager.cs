@@ -12,6 +12,7 @@ public class textBoxManager : MonoBehaviour
 
     public Player player;
     public EnemySpawner enemySpawner;
+    public EnemyUpSpawner enemyUpSpawner;
     public TextAsset textFile;
     public string[] textLines;
     
@@ -28,8 +29,9 @@ public class textBoxManager : MonoBehaviour
         //player = FindObjectOfType<PlayerController>;
         player = FindObjectOfType<Player>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemyUpSpawner = FindObjectOfType<EnemyUpSpawner>();
 
-        if(textFile != null){
+        if (textFile != null){
             textLines = (textFile.text.Split('\n'));
         }
 
@@ -66,6 +68,7 @@ public class textBoxManager : MonoBehaviour
         textBox.SetActive(true);
         isActive = true;
         enemySpawner.canSpawn=false;
+        enemyUpSpawner.canSpawn = false;
         if(stopPlayerMovement){
             player.canMove = false;
         }
@@ -76,6 +79,7 @@ public class textBoxManager : MonoBehaviour
         textBox.SetActive(false);
         isActive = false;
         enemySpawner.canSpawn=true;
+        enemyUpSpawner.canSpawn = true;
         player.canMove = true;
     }
 
