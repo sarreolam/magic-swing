@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public float currentHealth;
 
     public bool canMove;
-   
+
     public Collider2D topBoundary;
     public Collider2D bottomBoundary;
     public Collider2D leftBoundary;
@@ -33,11 +33,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(canMove){
+        if (canMove)
+        {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
         }
-        if(currentHealth <= 0){
+        if (currentHealth <= 0)
+        {
             menuManager.GameOver();
         }
     }
@@ -52,26 +54,23 @@ public class Player : MonoBehaviour
     }
     private void ClampPlayerWithinBounds()
     {
-        // Get the min and max limits from each boundary's bounds
+
         float minX = leftBoundary.bounds.max.x + 1.2f;
-        float maxX = rightBoundary.bounds.min.x -1;
+        float maxX = rightBoundary.bounds.min.x - 1;
         float minY = bottomBoundary.bounds.max.y + 0.8f;
         float maxY = topBoundary.bounds.min.y - 1;
 
-        // Get the player's current position
         Vector3 clampedPosition = player.position;
 
-        // Clamp the X and Y positions to stay within the boundaries
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, minX, maxX);
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, minY, maxY);
 
-        // Apply the clamped position to the player
         player.position = clampedPosition;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy"))
+        if (collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("enemyBullet"))
         {
             currentHealth -= 23;
             hitSound.Play();
@@ -80,5 +79,5 @@ public class Player : MonoBehaviour
         }
     }
 
-    
+
 }
