@@ -20,9 +20,11 @@ public class EnemyUpSpawner : MonoBehaviour
     IEnumerator spawnEnemy()
     {
         canSpawn = false;
-        for (int i = 0; i < 3; i++)
+        int enemyType = 2;
+        for (int i = 0; i < Random.Range(1, 3); i++)
         {
-        Instantiate(enemyPrefab, transform.position + new Vector3(Random.Range(0, 5),0, 0), Quaternion.identity);
+            GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(Random.Range(0, 5),0, 0), Quaternion.identity);
+            enemy.GetComponent<EnemyMovement>().setEnemyType(enemyType);
             yield return new WaitForSeconds(0.5f);
         }
 

@@ -67,6 +67,10 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
+        else if (enemyType == 2)
+        {
+            transform.position += (Vector3)Vector2.up * speed * Time.deltaTime;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

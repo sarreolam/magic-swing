@@ -20,7 +20,8 @@ public class EnemySpawner : MonoBehaviour
     {
         canSpawn = false;
         int enemyType = Random.Range(0, 2);
-        for (int i = 0; i < 6; i++)
+        int spawnFrequency = enemyType == 0 ? Random.Range(1, 6) : Random.Range(1, 3);
+        for (int i = 0; i < spawnFrequency; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(0, Random.Range(-5, 5), 0), Quaternion.identity);
             enemy.GetComponent<EnemyMovement>().setEnemyType(enemyType);
