@@ -77,6 +77,17 @@ public class Player : MonoBehaviour
             healthbar.SetHealth(currentHealth);
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("boss") || collision.gameObject.CompareTag("bossArm"))
+        {
+            currentHealth -= 33;
+            hitSound.Play();
+            healthbar.SetHealth(currentHealth);
+        }
+    }
+
+    public void setCanMove(bool canMove)
+    {
+        this.canMove = canMove;
     }
 
 

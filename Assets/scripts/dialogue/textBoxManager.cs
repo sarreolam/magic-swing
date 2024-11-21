@@ -13,6 +13,7 @@ public class textBoxManager : MonoBehaviour
     public Player player;
     public EnemySpawner enemySpawner;
     public EnemyUpSpawner enemyUpSpawner;
+    public GameObject boss;
     public TextAsset textFile;
     public string[] textLines;
     
@@ -81,6 +82,10 @@ public class textBoxManager : MonoBehaviour
         enemySpawner.canSpawn=true;
         enemyUpSpawner.canSpawn = true;
         player.canMove = true;
+        if (boss != null)
+        { 
+            boss.GetComponent<BossMovement>().setPlayerIsMoving(true);
+        }
     }
 
     public void ReloadScript(TextAsset theText){

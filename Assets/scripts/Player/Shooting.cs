@@ -10,10 +10,14 @@ public class Shooting : MonoBehaviour
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     private GameObject bulletToDestroy;
-    private bool canShoot = true;
+    private bool canShoot;
     public float fireRate;
     public AudioSource shooting;
 
+    void Start()
+    {
+        canShoot = true;    
+    }
     void Update()
     {
         if (Input.GetButton("Fire1")){
@@ -31,6 +35,11 @@ public class Shooting : MonoBehaviour
         Destroy(bulletToDestroy, 2);
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
+    }
+
+    public void setCanShoot(bool canShoot)
+    {
+        this.canShoot = canShoot;
     }
 
 
