@@ -13,14 +13,13 @@ public class EnemyUpSpawner : MonoBehaviour
         if (canSpawn)
         {
             StartCoroutine(spawnEnemy());
-
         }
     }
 
     IEnumerator spawnEnemy()
     {
         canSpawn = false;
-        int enemyType = 2;
+        int enemyType = Random.Range(2,4);
         for (int i = 0; i < Random.Range(1, 3); i++)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position + new Vector3(Random.Range(0, 5),0, 0), Quaternion.identity);
