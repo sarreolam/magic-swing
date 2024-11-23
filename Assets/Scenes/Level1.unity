@@ -485,6 +485,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerTxt: {fileID: 276535059}
+  player: {fileID: 1019085767}
+  enemySpawner: {fileID: 1126829602}
+  enemyUpSpawner: {fileID: 654044562}
 --- !u!1 &720190993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1287,7 @@ GameObject:
   - component: {fileID: 1019085774}
   - component: {fileID: 1019085775}
   - component: {fileID: 1019085776}
+  - component: {fileID: 1019085777}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -1675,6 +1679,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1019085777
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019085767}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1126829602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2349,6 +2374,7 @@ MonoBehaviour:
   player: {fileID: 1019085768}
   enemySpawner: {fileID: 1126829603}
   enemyUpSpawner: {fileID: 0}
+  boss: {fileID: 0}
   textFile: {fileID: 4900000, guid: 55592f8c7545a2045b3e414e887dc3bb, type: 3}
   textLines: []
   currentLine: 0
