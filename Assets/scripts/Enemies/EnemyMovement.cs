@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -21,12 +23,24 @@ public class EnemyMovement : MonoBehaviour
     private bool movingLeft = true;
     private bool shooting = false;
 
+    private bool isCharging = false;
+    private bool movingUp = false;
+    private float stopTimer = 0f;
+    private float pauseTimer = 0f;
+    public float stopDuration = 1f;
+    public float pauseDuration = 1f;
+    public float chargeSpeedMultiplier = 4f;
+    private Vector2 targetPosition;
+    private Vector2 lastKnownPlayerPosition;
+
+
     void Start()
     {
         enemyPrefab = GetComponent<Rigidbody2D>();
         //enemyType = Random.Range(0, 2);
         spawnPosition = transform.position;
-        stopPosition = transform.position - new Vector3(7, 0, 0);
+        if (enemyType == 1) stopPosition = transform.position - new Vector3(7, 0, 0);
+        else if (enemyType == 3) stopPosition = transform.position + new Vector3(0, 2.5f, 0);
 
         if (scoreManager == null)
         {
@@ -71,6 +85,44 @@ public class EnemyMovement : MonoBehaviour
         {
             transform.position += (Vector3)Vector2.up * speed * Time.deltaTime;
         }
+        else if (enemyType == 3)
+        {
+            if (!isCharging)
+            {
+                MoveTowards(stopPosition);
+
+                if (Vector2.Distance(transform.position, stopPosition) < 0.1f)
+                {
+                    stopTimer += Time.deltaTime;
+
+                    if (stopTimer >= stopDuration)
+                    {
+                        isCharging = true;
+                        lastKnownPlayerPosition = player.transform.position;
+                    }
+                }
+            }
+            else if (isCharging && !movingUp)
+            {
+                if (Vector2.Distance(transform.position, lastKnownPlayerPosition) < 0.1f)
+                {
+                    pauseTimer += Time.deltaTime;
+
+                    if (pauseTimer >= pauseDuration)
+                    {
+                        movingUp = true;
+                    }
+                }
+                else
+                {
+                    MoveTowards(lastKnownPlayerPosition, chargeSpeedMultiplier);
+                }
+            }
+            else if (movingUp)
+            {
+                MoveUpwards();
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -101,6 +153,16 @@ public class EnemyMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
+    void MoveTowards(Vector2 target, float chargeSpeedMultiplier)
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * chargeSpeedMultiplier * Time.deltaTime);
+    }
+
+    void MoveUpwards()
+    {
+        transform.position += Vector3.up * speed * Time.deltaTime;
+    }
+
     IEnumerator Shooting()
     {
         Vector3 spawnOffset = new Vector3(1f, 0, 0);
@@ -114,7 +176,4 @@ public class EnemyMovement : MonoBehaviour
     {
         enemyType = type;
     }
-
 }
-
-
