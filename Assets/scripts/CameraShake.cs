@@ -16,7 +16,7 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Shake(3, 3));
+        StartCoroutine(Shake(1, 4));
     }
 
     public void ShakeCamera(float intensity, float shakeDuration)

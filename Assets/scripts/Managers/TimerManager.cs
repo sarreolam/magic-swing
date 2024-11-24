@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
-    private float timeLeft = 180;
+    private float timeLeft = 5;
     private bool timerOn = false;
+
+    public Player player;
 
     public TextMeshProUGUI timerTxt;
     private textBoxManager textBoxManager;
@@ -27,10 +29,10 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        if (!timerOn && textBoxManager != null && !textBoxManager.isActive)
-        {
-            timerOn = true;
-        }
+        //if (!timerOn && textBoxManager != null && !textBoxManager.isActive)
+        //{
+        //    timerOn = true;
+        //}
 
         if (timerOn)
         {
@@ -44,7 +46,8 @@ public class TimerManager : MonoBehaviour
                 Debug.Log("Time's up!");
                 timeLeft = 0;
                 timerOn = false;
-                SceneManager.LoadScene("Menu");
+                player.SetGameStart(false);
+                StartCoroutine(LoadBoss());
             }
         }
     }
@@ -63,5 +66,15 @@ public class TimerManager : MonoBehaviour
         {
             Debug.LogError("timerTxt es null al intentar actualizar el texto. Revisa que el objeto est� activo y asignado.");
         }
+    }
+
+    private IEnumerator LoadBoss()
+    {
+        yield return new WaitForSeconds(3f); // Adjust delay duration as needed
+        SceneManager.LoadScene("LevelBoss");
+    }
+    public void SetTimerOn(bool timerOn)
+    {
+        this.timerOn = timerOn;
     }
 }

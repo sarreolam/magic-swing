@@ -51,7 +51,7 @@ public class BossAtack : MonoBehaviour
                 {
                     moveUp = true;
                 }
-                if (Random.Range(0, 500) < 1) //(Random.Range(0, 100) < 50)
+                if (Random.Range(0, 600) < 1) //(Random.Range(0, 100) < 50)
                 {
                     originalPosition = transform.position;
                     canAttack = true;

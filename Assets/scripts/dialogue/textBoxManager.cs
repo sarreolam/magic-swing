@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class textBoxManager : MonoBehaviour
 {
@@ -21,7 +22,8 @@ public class textBoxManager : MonoBehaviour
     public int endAtLine;
 
     public bool isActive;
-    public bool stopPlayerMovement;
+    bool gameStart = false;
+    
 
     //public PlayerController player;
 
@@ -29,8 +31,6 @@ public class textBoxManager : MonoBehaviour
     {
         //player = FindObjectOfType<PlayerController>;
         player = FindObjectOfType<Player>();
-        enemySpawner = FindObjectOfType<EnemySpawner>();
-        enemyUpSpawner = FindObjectOfType<EnemyUpSpawner>();
 
         if (textFile != null){
             textLines = (textFile.text.Split('\n'));
@@ -65,26 +65,32 @@ public class textBoxManager : MonoBehaviour
         }
     }
 
-    public void EnableTextBox(){
+    public void EnableTextBox()
+    {
         textBox.SetActive(true);
         isActive = true;
-        enemySpawner.canSpawn=false;
-        enemyUpSpawner.canSpawn = false;
-        if(stopPlayerMovement){
-            player.canMove = false;
-        }
+
+    }
+
+    public void EnableTextBox(int currentLine, int endAtLine)
+    {
+        textBox.SetActive(true);
+        isActive = true;
+        this.currentLine = currentLine;
+        this.endAtLine = endAtLine;
         
     }
 
     public void DisableTextBox(){
         textBox.SetActive(false);
         isActive = false;
-        enemySpawner.canSpawn=true;
-        enemyUpSpawner.canSpawn = true;
-        player.canMove = true;
+        player.CallMoveToCenter(!gameStart);
+        currentLine = 0;
+
+
         if (boss != null)
         { 
-            boss.GetComponent<BossMovement>().setPlayerIsMoving(true);
+            boss.GetComponent<BossMovement>().SetPlayerIsMoving(true);
         }
     }
 
@@ -94,5 +100,12 @@ public class textBoxManager : MonoBehaviour
             textLines = (theText.text.Split('\n'));
         }
     }
+
+    public void SetGameStart(bool gameStart)
+    {
+        this.gameStart = gameStart;
+    }
+
+
 
 }

@@ -12,11 +12,11 @@ public class EnemySpawner : MonoBehaviour
     {
         if (canSpawn)
         {
-            StartCoroutine(spawnEnemy());
+            StartCoroutine(SpawnEnemy());
         }
     }
 
-    IEnumerator spawnEnemy()
+    IEnumerator SpawnEnemy()
     {
         canSpawn = false;
         int enemyType = Random.Range(0, 2);
@@ -32,9 +32,10 @@ public class EnemySpawner : MonoBehaviour
         canSpawn = true;
     }
 
-    public void setCanSpawn(bool canSpawn)
+    public void SetCanSpawn(bool canSpawn)
     {
         this.canSpawn = canSpawn;
+        this.enabled = canSpawn;
     }
 
 }

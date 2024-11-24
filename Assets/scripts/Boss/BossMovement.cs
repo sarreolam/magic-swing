@@ -31,11 +31,11 @@ public class BossMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        EnemySpawner.GetComponent<EnemySpawner>().setCanSpawn(false);
+        EnemySpawner.GetComponent<EnemySpawner>().SetCanSpawn(false);
         
         EnemyUpSpawner.GetComponent<EnemyUpSpawner>().setCanSpawn(false);
         Player.GetComponent<Shooting>().setCanShoot(false);
-        Player.GetComponent<Player>().setCanMove(false);
+        Player.GetComponent<Player>().SetCanMove(false);
 
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
@@ -54,10 +54,7 @@ public class BossMovement : MonoBehaviour
             }
             else
             {
-                EnemySpawner.GetComponent<EnemySpawner>().setCanSpawn(true);
-                EnemyUpSpawner.GetComponent<EnemyUpSpawner>().setCanSpawn(true);
-                Player.GetComponent<Shooting>().setCanShoot(true);
-                Player.GetComponent<Player>().setCanMove(true);
+                Player.GetComponent<Player>().SetGameStart(true);
                 BossArm.GetComponent<BossAtack>().setStartBattle(true);
                 startBattle = true;
 
@@ -65,7 +62,7 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    public void setPlayerIsMoving(bool playerIsMoving)
+    public void SetPlayerIsMoving(bool playerIsMoving)
     {
         this.playerIsMoving = playerIsMoving;
     }

@@ -484,10 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d6094fdeea12e4eb8f5d7abd252f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1019085768}
   timerTxt: {fileID: 276535059}
-  player: {fileID: 1019085767}
-  enemySpawner: {fileID: 1126829602}
-  enemyUpSpawner: {fileID: 654044562}
 --- !u!1 &720190993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d281b6a0a44e43344b891dbf2a0c4b64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooting: {fileID: 1019085772}
   speed: 8
   maxHealth: 173
   currentHealth: 0
@@ -1318,6 +1317,10 @@ MonoBehaviour:
   healthbar: {fileID: 1448785199}
   menuManager: {fileID: 636699354}
   hitSound: {fileID: 1019085776}
+  textBoxManager: {fileID: 1657236158}
+  timerManager: {fileID: 718089372}
+  enemySpawner: {fileID: 1126829603}
+  enemyUpSpawner: {fileID: 654044564}
 --- !u!212 &1019085769
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1379,7 +1382,7 @@ Transform:
   m_GameObject: {fileID: 1019085767}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -12, y: 0, z: 0}
   m_LocalScale: {x: 0.047305487, y: 0.047305487, z: 0.047305487}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2380,7 +2383,6 @@ MonoBehaviour:
   currentLine: 0
   endAtLine: 0
   isActive: 1
-  stopPlayerMovement: 0
 --- !u!4 &1657236159
 Transform:
   m_ObjectHideFlags: 0

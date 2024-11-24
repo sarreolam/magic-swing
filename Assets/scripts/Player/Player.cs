@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D player;
+    public Shooting shooting;
 
     float horizontal;
     float vertical;
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public float currentHealth;
 
     public bool canMove;
+    private bool gameStart = false;
 
     public Collider2D topBoundary;
     public Collider2D bottomBoundary;
@@ -24,11 +26,22 @@ public class Player : MonoBehaviour
     public MenuManager menuManager;
     public AudioSource hitSound;
 
+    private Coroutine moveCoroutine;
+    public textBoxManager textBoxManager;
+    public TimerManager timerManager;
+
+    public EnemySpawner enemySpawner;
+    public EnemyUpSpawner enemyUpSpawner;
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
+        enemySpawner.canSpawn = false;
+        enemyUpSpawner.canSpawn = false;
+        shooting.setCanShoot(false);
+        
     }
 
     void Update()
@@ -50,7 +63,10 @@ public class Player : MonoBehaviour
         Vector2 movement = new Vector2(horizontal * speed, vertical * speed);
         player.velocity = movement;
 
-        ClampPlayerWithinBounds();
+        if (gameStart)
+        {
+            ClampPlayerWithinBounds();
+        }
     }
     private void ClampPlayerWithinBounds()
     {
@@ -85,9 +101,74 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void setCanMove(bool canMove)
+    public void CallMoveToCenter(bool enableText)
+    {
+        if (moveCoroutine == null)
+        {
+            moveCoroutine = StartCoroutine(MoveToCenter(enableText)); 
+        }
+    }
+
+    IEnumerator MoveToCenter(bool enableText)
+    {
+        canMove = false;
+        horizontal = 0;
+        vertical = 0;
+        while (transform.position != Vector3.zero)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, Vector3.zero, speed * Time.deltaTime);
+            yield return Time.deltaTime * 0.1;
+        }
+        if (enableText)
+        {
+            StartTextBoxes();
+        }
+        else
+        {
+            SetGameStart(true);
+        }
+        transform.position = Vector3.zero;
+        moveCoroutine = null;
+    }
+
+    public void StartTextBoxes()
+    {
+        textBoxManager.EnableTextBox();
+        textBoxManager.SetGameStart(true);
+    }
+
+
+    public void SetCanMove(bool canMove)
     {
         this.canMove = canMove;
+        if (!canMove )
+        {
+            horizontal = 0;
+            vertical = 0;
+        }
+    }
+
+    public void SetGameStart(bool gameStart)
+    {
+        if (this.gameStart != gameStart)
+        {
+            this.gameStart = gameStart;
+            SetCanMove(gameStart);
+            shooting.setCanShoot(gameStart);
+            enemySpawner.SetCanSpawn(gameStart);
+            enemyUpSpawner.setCanSpawn(gameStart);
+            if (timerManager != null) {
+                timerManager.SetTimerOn(gameStart);
+            }
+            if (!gameStart) {
+                GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+                for (int i = 0; i < enemies.Length; i++)
+                {
+                    Destroy(enemies[i]);
+                }
+                CallMoveToCenter(!gameStart);
+            }
+        }
     }
 
 
