@@ -23,27 +23,18 @@ public class BossMovement : MonoBehaviour
     public float maxHealth = 2052f;
     private float health;
     public float damage = 23f;
-
-    
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
         EnemySpawner.GetComponent<EnemySpawner>().setCanSpawn(false);
-        
         EnemyUpSpawner.GetComponent<EnemyUpSpawner>().setCanSpawn(false);
         Player.GetComponent<Shooting>().setCanShoot(false);
         Player.GetComponent<Player>().setCanMove(false);
 
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (!startBattle)
@@ -60,7 +51,6 @@ public class BossMovement : MonoBehaviour
                 Player.GetComponent<Player>().setCanMove(true);
                 BossArm.GetComponent<BossAtack>().setStartBattle(true);
                 startBattle = true;
-
             }
         }
     }
@@ -81,6 +71,6 @@ public class BossMovement : MonoBehaviour
 
 
     }
-    
+
 
 }

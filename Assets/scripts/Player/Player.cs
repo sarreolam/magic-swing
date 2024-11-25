@@ -23,6 +23,8 @@ public class Player : MonoBehaviour
     public Health healthbar;
     public MenuManager menuManager;
     public AudioSource hitSound;
+    public float invincibilityDuration = 1f;
+    private bool isInvincible = false;
 
     void Start()
     {
@@ -70,18 +72,23 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("enemyBullet"))
+        if (!isInvincible)
         {
-            currentHealth -= 23;
-            hitSound.Play();
-            healthbar.SetHealth(currentHealth);
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.CompareTag("boss") || collision.gameObject.CompareTag("bossArm"))
-        {
-            currentHealth -= 33;
-            hitSound.Play();
-            healthbar.SetHealth(currentHealth);
+            if (collision.gameObject.CompareTag("enemy") || collision.gameObject.CompareTag("enemyBullet"))
+            {
+                currentHealth -= 23;
+                hitSound.Play();
+                healthbar.SetHealth(currentHealth);
+                Destroy(collision.gameObject);
+                StartCoroutine(InvincibilityFrames());
+            }
+            if (collision.gameObject.CompareTag("boss") || collision.gameObject.CompareTag("bossArm"))
+            {
+                currentHealth -= 33;
+                hitSound.Play();
+                healthbar.SetHealth(currentHealth);
+                StartCoroutine(InvincibilityFrames());
+            }
         }
     }
 
@@ -90,5 +97,33 @@ public class Player : MonoBehaviour
         this.canMove = canMove;
     }
 
+    IEnumerator InvincibilityFrames()
+    {
+        isInvincible = true;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        if (spriteRenderers != null)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+                {
+                    spriteRenderer.enabled = false;
+                }
+                yield return new WaitForSeconds(invincibilityDuration / 10);
+
+                foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+                {
+                    spriteRenderer.enabled = true;
+                }
+                yield return new WaitForSeconds(invincibilityDuration / 10);
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(invincibilityDuration);
+        }
+
+        isInvincible = false;
+    }
 
 }

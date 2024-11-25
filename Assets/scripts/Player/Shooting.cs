@@ -13,15 +13,19 @@ public class Shooting : MonoBehaviour
     private bool canShoot;
     public float fireRate;
     public AudioSource shooting;
+    [SerializeField] Animator characterAnimator;
 
     void Start()
     {
-        canShoot = true;    
+        canShoot = true;
     }
     void Update()
     {
-        if (Input.GetButton("Fire1")){
-            if(canShoot){
+        if (Input.GetButton("Fire1"))
+        {
+            if (canShoot)
+            {
+                characterAnimator.SetTrigger("IsShot");
                 StartCoroutine(destroyBullet());
                 shooting.Play();
             }
@@ -31,7 +35,7 @@ public class Shooting : MonoBehaviour
     IEnumerator destroyBullet()
     {
         canShoot = false;
-        bulletToDestroy = Instantiate(bulletPrefab, shootingPoint.position, transform.rotation) ;
+        bulletToDestroy = Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
         Destroy(bulletToDestroy, 2);
         yield return new WaitForSeconds(fireRate);
         canShoot = true;

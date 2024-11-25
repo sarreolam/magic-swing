@@ -142,7 +142,6 @@ public class EnemyMovement : MonoBehaviour
             if (collision.transform.parent.name == "Boundaries")
             {
                 Destroy(this.gameObject);
-
             }
         }
 

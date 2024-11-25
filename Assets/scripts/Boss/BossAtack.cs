@@ -9,19 +9,19 @@ public class BossAtack : MonoBehaviour
     private bool canAttack = false;
     private bool startBattle = false;
     private bool moveUp;
-    private bool attack = true; 
+    private bool attack = true;
     private float speed = 5.0f;
 
 
-    private float attackProbability = 0.05f; 
-    private float probabilityIncrement = 0.000000000005f; 
+    private float attackProbability = 0.05f;
+    private float probabilityIncrement = 0.000000000005f;
     private float maxProbability = 0.8f;
     private Coroutine attackCoroutine;
 
 
     Vector3 topPostion;
     Vector3 bottomPostion;
-    Vector3 atackRange = new Vector3(12,0,0);
+    Vector3 atackRange = new Vector3(12, 0, 0);
     Vector3 originalPosition;
 
     public GameObject boss;
@@ -53,7 +53,6 @@ public class BossAtack : MonoBehaviour
                 }
                 if (Random.Range(0, 500) < 1) //(Random.Range(0, 100) < 50)
                 {
-                    Debug.Log("bueans");
                     originalPosition = transform.position;
                     canAttack = true;
                 }
@@ -93,7 +92,7 @@ public class BossAtack : MonoBehaviour
     public void setStartBattle(bool startBattle)
     {
         this.startBattle = startBattle;
-        
+
     }
 
 

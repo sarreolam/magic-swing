@@ -1,0 +1,53 @@
+■■■■■ How to use ■■■■■
+
+■ How to operate
+・Movement: Arrow buttons / WASD keys
+・Shot: Space key / left mouse click
+*Damage when touching dummy target
+
+■ Modification method
+Compatible with parts of asset "2D_Charactor_Witch".
+https://assetstore.unity.com/packages/2d/characters/2d-charactor-witch-242303
+
+You can create variations by replacing them.
+
+・Select “SpriteRenderer” of the parts placed in the hierarchy
+・Specify Sprite to another image of the same part
+・Replacement completed
+*There is no problem with animation as long as the image sizes are the same.
+
+
+■ About animation
+The motion will change by setting the next Trigger.
+
+IsShot
+IsDamage
+
+
+
+■■■■■　使い方　■■■■■
+
+■　操作方法
+・移動：矢印ボタン　／　WASDキー
+・ショット：スペースキー　／　マウス左クリック
+＊ダミーターゲットに接触するとダメージ
+
+■　改造方法
+アセット「2D_Charactor_Witch」の一部と互換性があります。
+https://assetstore.unity.com/packages/2d/characters/2d-charactor-witch-242303
+
+差し替えることでバリエーションを作ることができます。
+
+・ヒエラルキーに配置されているパーツの「SpriteRenderer」のを選択
+・Spriteを同じ部位の他画像に指定
+・差し替え完了
+＊画像サイズが一緒であればアニメーションさせても問題ありません。
+
+
+■　アニメーションについて
+次のTriggerを立てることでモーションが変化します。
+
+IsShot
+IsDamage
+
+

@@ -106,6 +106,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1053132283315335449, guid: f8180fa4df2d5c9488eeeb56e3d9b6f1, type: 3}
   player: {fileID: 0}
   scoreManager: {fileID: 0}
+  stopDuration: 1
+  pauseDuration: 1
+  chargeSpeedMultiplier: 4
 --- !u!61 &6382816961296998694
 BoxCollider2D:
   m_ObjectHideFlags: 0
