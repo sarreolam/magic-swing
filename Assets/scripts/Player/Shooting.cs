@@ -44,7 +44,6 @@ public class Shooting : MonoBehaviour
 
     public void setCanShoot(bool canShoot)
     {
-        Debug.Log(canShoot);
         this.canShoot = canShoot;
         this.enabled = canShoot;
     }

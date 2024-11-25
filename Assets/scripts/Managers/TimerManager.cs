@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
-    private float timeLeft = 5;
+    private float timeLeft = 180;
     private bool timerOn = false;
 
     public Player player;
