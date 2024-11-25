@@ -21,7 +21,7 @@ public class BossAtack : MonoBehaviour
 
     Vector3 topPostion;
     Vector3 bottomPostion;
-    Vector3 atackRange = new Vector3(12, 0, 0);
+    Vector3 atackRange = new Vector3(13, 0, 0);
     Vector3 originalPosition;
 
     public GameObject boss;
@@ -51,7 +51,7 @@ public class BossAtack : MonoBehaviour
                 {
                     moveUp = true;
                 }
-                if (Random.Range(0, 500) < 1) //(Random.Range(0, 100) < 50)
+                if (Random.Range(0, 600) < 1) //(Random.Range(0, 100) < 50)
                 {
                     originalPosition = transform.position;
                     canAttack = true;

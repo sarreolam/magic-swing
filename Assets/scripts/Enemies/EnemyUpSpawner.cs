@@ -34,6 +34,7 @@ public class EnemyUpSpawner : MonoBehaviour
     public void setCanSpawn(bool canSpawn)
     {
         this.canSpawn = canSpawn;
+        this.enabled = canSpawn;
     }
 
 

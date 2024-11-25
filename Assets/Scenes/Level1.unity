@@ -1156,6 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d6094fdeea12e4eb8f5d7abd252f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1019085768}
   timerTxt: {fileID: 276535059}
 --- !u!1 &718747718
 GameObject:
@@ -1946,8 +1947,16 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1126829604}
-  - component: {fileID: 1126829603}
+  - component: {fileID: 1019085770}
+  - component: {fileID: 1019085769}
+  - component: {fileID: 1019085773}
+  - component: {fileID: 1019085771}
+  - component: {fileID: 1019085768}
+  - component: {fileID: 1019085772}
+  - component: {fileID: 1019085774}
+  - component: {fileID: 1019085775}
+  - component: {fileID: 1019085776}
+  - component: {fileID: 1019085777}
   m_Layer: 0
   m_Name: enemySpawner
   m_TagString: Untagged
@@ -3039,7 +3048,6 @@ MonoBehaviour:
   currentLine: 0
   endAtLine: 0
   isActive: 1
-  stopPlayerMovement: 0
 --- !u!4 &1657236159
 Transform:
   m_ObjectHideFlags: 0

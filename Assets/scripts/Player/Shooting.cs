@@ -39,11 +39,14 @@ public class Shooting : MonoBehaviour
         Destroy(bulletToDestroy, 2);
         yield return new WaitForSeconds(fireRate);
         canShoot = true;
+
     }
 
     public void setCanShoot(bool canShoot)
     {
+        Debug.Log(canShoot);
         this.canShoot = canShoot;
+        this.enabled = canShoot;
     }
 
 
