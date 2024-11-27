@@ -16,7 +16,7 @@ public class CameraShake : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(Shake(1, 4));
+        //StartCoroutine(Shake(1, 4));
     }
 
     public void ShakeCamera(float intensity, float shakeDuration)
@@ -26,7 +26,6 @@ public class CameraShake : MonoBehaviour
 
     private IEnumerator Shake(float intensity, float duration)
     {
-        Debug.Log("bueans");
         perlinNoise.m_AmplitudeGain = intensity;
 
         // Wait for the specified duration
