@@ -21,6 +21,7 @@ public class BossMovement : MonoBehaviour
     public GameObject EnemyUpSpawner;
     public GameObject Player;
     public GameObject BossArm;
+    public BoxCollider2D BossCollider;
 
     private Coroutine moveCoroutine;
 
@@ -71,11 +72,14 @@ public class BossMovement : MonoBehaviour
 
             if (health <= 0)
             {
+                BossCollider.enabled = false;   
                 Player.GetComponent<Player>().SetGameStart(false);
                 timeline.CallCameraShake(2, 5);
                 timeline.Next();
                 SetStartBattle(false);
-                
+
+
+
             }
         }
     }

@@ -136,6 +136,7 @@ public class EnemyMovement : MonoBehaviour
                 Destroy(this.gameObject);
                 scoreManager.IncreaseScore();
             }
+            StartCoroutine(InvincibilityFrames());
         }
         if (collision.transform.parent != null)
         {
@@ -174,5 +175,33 @@ public class EnemyMovement : MonoBehaviour
     public void setEnemyType(int type)
     {
         enemyType = type;
+    }
+
+    IEnumerator InvincibilityFrames()
+    {
+        int invincibilityDuration = 2;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        if (spriteRenderers != null)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+                {
+                    spriteRenderer.enabled = false;
+                }
+                yield return new WaitForSeconds(invincibilityDuration / 10);
+
+                foreach (SpriteRenderer spriteRenderer in spriteRenderers)
+                {
+                    spriteRenderer.enabled = true;
+                }
+                yield return new WaitForSeconds(invincibilityDuration / 10);
+            }
+        }
+        else
+        {
+            yield return new WaitForSeconds(invincibilityDuration);
+        }
+
     }
 }

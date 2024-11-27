@@ -1362,7 +1362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6d6094fdeea12e4eb8f5d7abd252f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 10
+  timeLeft: 120
   player: {fileID: 1946451067}
   timerTxt: {fileID: 276535059}
   menuManager: {fileID: 636699354}
@@ -4897,3 +4897,4 @@ SceneRoots:
   - {fileID: 1567501596}
   - {fileID: 1208110448}
   - {fileID: 1253578794}
+  - {fileID: 436869257}

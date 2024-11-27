@@ -37,5 +37,6 @@ public class EnemyUpSpawner : MonoBehaviour
         this.enabled = canSpawn;
     }
 
+   
 
 }

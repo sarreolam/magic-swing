@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfcdc98c52f0b3b45a491f5deb4f68db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  projectileSpeed: 2
+  speed: 3
+  projectileSpeed: 3
   shootingCooldown: 2
   health: 20
   projectilePrefab: {fileID: 1053132283315335449, guid: f8180fa4df2d5c9488eeeb56e3d9b6f1, type: 3}
