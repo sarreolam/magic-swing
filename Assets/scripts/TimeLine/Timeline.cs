@@ -59,6 +59,9 @@ public class Timeline : MonoBehaviour
                     boss.CallMoveToPosition();
                     CallCameraShake(2, 4);
                     break;
+                case "bossDefeat":
+                    boss.CallDefeat();
+                    break;
                 case "gameStart":
                     player.SetGameStart(true);
                     if (boss != null)

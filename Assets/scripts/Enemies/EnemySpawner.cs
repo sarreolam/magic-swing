@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject toastEnemyPrefab;
     public GameObject catEnemyPrefab;
     public float spawnInterval;
+    public float spawnFrequency;
     public bool canSpawn = true;
 
     void Update()
@@ -21,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     {
         canSpawn = false;
         int enemyType = Random.Range(0, 2);
-        int spawnFrequency = enemyType == 0 ? Random.Range(1, 6) : Random.Range(1, 3);
+        spawnFrequency = enemyType == 0 ? Random.Range(1, 6) : Random.Range(1, 3);
         for (int i = 0; i < spawnFrequency; i++)
         {
             if (enemyType == 0)

@@ -11,6 +11,8 @@ public class BossMovement : MonoBehaviour
 
     private Vector3 bossPosition = new Vector3(8f, 0.0f, 0.0f);
 
+    private Vector3 bossDefeatPostirion = new Vector3(8, -10, 0);
+
 
     private bool startBattle = false;
     private bool playerIsMoving = false;
@@ -71,7 +73,7 @@ public class BossMovement : MonoBehaviour
             {
 
                 Player.GetComponent<Player>().SetGameStart(false);
-                timeline.CallCameraShake(2, 4);
+                timeline.CallCameraShake(2, 5);
                 timeline.Next();
                 SetStartBattle(false);
                 
@@ -104,6 +106,28 @@ public class BossMovement : MonoBehaviour
 
         timeline.Next();
         transform.position =bossPosition;
+        moveCoroutine = null;
+    }
+
+    public void CallDefeat()
+    {
+        if (moveCoroutine == null)
+        {
+            moveCoroutine = StartCoroutine(MoveToDefeat());
+        }
+    }
+
+    IEnumerator MoveToDefeat()
+    {
+
+        while (transform.position != bossDefeatPostirion)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossDefeatPostirion, 2f *speed * Time.deltaTime);
+            yield return Time.deltaTime * 0.1;
+        }
+
+        timeline.Next();
+        transform.position = bossDefeatPostirion;
         moveCoroutine = null;
     }
 
