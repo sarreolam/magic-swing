@@ -70,7 +70,7 @@ public class Timeline : MonoBehaviour
                     }
                     break;
                 case "gameWin":
-                    SceneManager.LoadScene("Menu");
+                    SceneManager.LoadScene("Win");
                     break;
                 default: break;
             }

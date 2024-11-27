@@ -71,7 +71,6 @@ public class BossMovement : MonoBehaviour
 
             if (health <= 0)
             {
-
                 Player.GetComponent<Player>().SetGameStart(false);
                 timeline.CallCameraShake(2, 5);
                 timeline.Next();
@@ -79,12 +78,6 @@ public class BossMovement : MonoBehaviour
                 
             }
         }
-
-        
-
-
-
-
     }
 
     public void CallMoveToPosition()
