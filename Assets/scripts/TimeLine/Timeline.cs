@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Timeline : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class Timeline : MonoBehaviour
                     break;
                 case "callBoss":
                     boss.CallMoveToPosition();
-                    cameraShake.ShakeCamera(4, 1);
+                    CallCameraShake(2, 4);
                     break;
                 case "gameStart":
                     player.SetGameStart(true);
@@ -65,8 +66,15 @@ public class Timeline : MonoBehaviour
                         boss.SetStartBattle(true);
                     }
                     break;
-                 default: break;
+                case "gameWin":
+                    SceneManager.LoadScene("Menu");
+                    break;
+                default: break;
             }
         }
+    }
+    public void CallCameraShake(float intensity, float shakeDuration)
+    {
+        cameraShake.ShakeCamera(intensity, shakeDuration);
     }
 }

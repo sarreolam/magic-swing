@@ -13,6 +13,7 @@ public class TimerManager : MonoBehaviour
 
     public TextMeshProUGUI timerTxt;
     private textBoxManager textBoxManager;
+    public MenuManager menuManager;
 
     void Start()
     {
@@ -46,7 +47,7 @@ public class TimerManager : MonoBehaviour
                 Debug.Log("Time's up!");
                 timeLeft = 0;
                 timerOn = false;
-                
+
                 StartCoroutine(LoadBoss());
             }
         }
@@ -73,7 +74,7 @@ public class TimerManager : MonoBehaviour
         player.SetGameStart(false);
         player.CallMoveToCenter();
         yield return new WaitForSeconds(3f); // Adjust delay duration as needed
-        SceneManager.LoadScene("LevelBoss");
+        menuManager.Boss1();
     }
     public void SetTimerOn(bool timerOn)
     {

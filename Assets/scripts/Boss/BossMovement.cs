@@ -66,7 +66,21 @@ public class BossMovement : MonoBehaviour
             health -= damage;
             healthbar.SetHealth(health - damage);
             Destroy(collision.gameObject);
+
+            if (health <= 0)
+            {
+
+                Player.GetComponent<Player>().SetGameStart(false);
+                timeline.CallCameraShake(2, 4);
+                timeline.Next();
+                SetStartBattle(false);
+                
+            }
         }
+
+        
+
+
 
 
     }
