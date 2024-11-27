@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
-    private float timeLeft = 180;
+    private float timeLeft = 3;
     private bool timerOn = false;
 
     public Player player;
 
     public TextMeshProUGUI timerTxt;
     private textBoxManager textBoxManager;
+    public MenuManager menuManager;
 
     void Start()
     {
@@ -71,7 +72,7 @@ public class TimerManager : MonoBehaviour
     private IEnumerator LoadBoss()
     {
         yield return new WaitForSeconds(3f); // Adjust delay duration as needed
-        SceneManager.LoadScene("LevelBoss");
+        menuManager.Boss1();
     }
     public void SetTimerOn(bool timerOn)
     {
