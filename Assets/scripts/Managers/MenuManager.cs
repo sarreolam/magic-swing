@@ -21,6 +21,10 @@ public class MenuManager : MonoBehaviour
     {
         SceneManager.LoadScene("LevelBoss");
     }
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
 
     public void QuitGame()
     {
