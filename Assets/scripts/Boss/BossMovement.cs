@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -19,39 +20,39 @@ public class BossMovement : MonoBehaviour
     public GameObject Player;
     public GameObject BossArm;
 
+    private Coroutine moveCoroutine;
+
     public Health healthbar;
     public float maxHealth = 2052f;
     private float health;
     public float damage = 23f;
+
+    public Timeline timeline;
+
     void Start()
     {
-        EnemySpawner.GetComponent<EnemySpawner>().SetCanSpawn(false);
-
-        EnemyUpSpawner.GetComponent<EnemyUpSpawner>().setCanSpawn(false);
-        Player.GetComponent<Shooting>().setCanShoot(false);
-        Player.GetComponent<Player>().SetCanMove(false);
 
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
     }
 
 
-    void Update()
-    {
-        if (!startBattle)
-        {
-            if (Vector3.Distance(transform.position, bossPosition) > 0 || !playerIsMoving)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, bossPosition, speed * Time.deltaTime);
-            }
-            else
-            {
-                Player.GetComponent<Player>().SetGameStart(true);
-                BossArm.GetComponent<BossAtack>().setStartBattle(true);
-                startBattle = true;
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (!startBattle)
+    //    {
+    //        if (Vector3.Distance(transform.position, bossPosition) > 0 || !playerIsMoving)
+    //        {
+    //            transform.position = Vector2.MoveTowards(transform.position, bossPosition, speed * Time.deltaTime);
+    //        }
+    //        else
+    //        {
+    //            Player.GetComponent<Player>().SetGameStart(true);
+    //            BossArm.GetComponent<BossAtack>().setStartBattle(true);
+    //            startBattle = true;
+    //        }
+    //    }
+    //}
 
     public void SetPlayerIsMoving(bool playerIsMoving)
     {
@@ -68,6 +69,33 @@ public class BossMovement : MonoBehaviour
         }
 
 
+    }
+
+    public void CallMoveToPosition()
+    {
+        if (moveCoroutine == null)
+        {
+            moveCoroutine = StartCoroutine(MoveToPosition());
+        }
+    }
+
+    IEnumerator MoveToPosition()
+    {
+
+        while (transform.position != bossPosition)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, bossPosition, speed * Time.deltaTime);
+            yield return Time.deltaTime * 0.1;
+        }
+
+        timeline.Next();
+        transform.position =bossPosition;
+        moveCoroutine = null;
+    }
+
+    public void SetStartBattle(bool startBattle)
+    {
+        BossArm.GetComponent<BossAtack>().setStartBattle(startBattle);
     }
 
 

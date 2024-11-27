@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     public EnemySpawner enemySpawner;
     public EnemyUpSpawner enemyUpSpawner;
 
+    public Timeline timeline;
+
     void Start()
     {
         player = GetComponent<Rigidbody2D>();
@@ -108,15 +110,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void CallMoveToCenter(bool enableText)
+    public void CallMoveToCenter()
     {
         if (moveCoroutine == null)
         {
-            moveCoroutine = StartCoroutine(MoveToCenter(enableText)); 
+            moveCoroutine = StartCoroutine(MoveToCenter()); 
         }
     }
 
-    IEnumerator MoveToCenter(bool enableText)
+    IEnumerator MoveToCenter()
     {
         canMove = false;
         horizontal = 0;
@@ -126,23 +128,17 @@ public class Player : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, Vector3.zero, speed * Time.deltaTime);
             yield return Time.deltaTime * 0.1;
         }
-        if (enableText)
-        {
-            StartTextBoxes();
-        }
-        else
-        {
-            SetGameStart(true);
-        }
+
+        timeline.Next();
         transform.position = Vector3.zero;
         moveCoroutine = null;
     }
 
-    public void StartTextBoxes()
-    {
-        textBoxManager.EnableTextBox();
-        textBoxManager.SetGameStart(true);
-    }
+    //public void StartTextBoxes()
+    //{
+    //    textBoxManager.EnableTextBox();
+    //    textBoxManager.SetGameStart(true);
+    //}
 
 
     public void SetCanMove(bool canMove)
@@ -173,7 +169,6 @@ public class Player : MonoBehaviour
                 {
                     Destroy(enemies[i]);
                 }
-                CallMoveToCenter(!gameStart);
             }
         }
     }

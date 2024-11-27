@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class TimerManager : MonoBehaviour
 {
-    private float timeLeft = 180;
+    public float timeLeft = 180;
     private bool timerOn = false;
 
     public Player player;
@@ -46,7 +46,7 @@ public class TimerManager : MonoBehaviour
                 Debug.Log("Time's up!");
                 timeLeft = 0;
                 timerOn = false;
-                player.SetGameStart(false);
+                
                 StartCoroutine(LoadBoss());
             }
         }
@@ -70,6 +70,8 @@ public class TimerManager : MonoBehaviour
 
     private IEnumerator LoadBoss()
     {
+        player.SetGameStart(false);
+        player.CallMoveToCenter();
         yield return new WaitForSeconds(3f); // Adjust delay duration as needed
         SceneManager.LoadScene("LevelBoss");
     }

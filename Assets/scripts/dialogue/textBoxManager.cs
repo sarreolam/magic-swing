@@ -11,41 +11,36 @@ public class textBoxManager : MonoBehaviour
     public TextMeshProUGUI theText;
     public TextMeshProUGUI theSpeaker;
 
-    public Player player;
-    public EnemySpawner enemySpawner;
-    public EnemyUpSpawner enemyUpSpawner;
-    public GameObject boss;
     public TextAsset textFile;
     public string[] textLines;
+
+    public Timeline timeline;
     
     public int currentLine;
     public int endAtLine;
 
     public bool isActive;
-    bool gameStart = false;
-    
+    //bool gameStart = false;
+
 
     //public PlayerController player;
 
     void Start()
     {
         //player = FindObjectOfType<PlayerController>;
-        player = FindObjectOfType<Player>();
 
-        if (textFile != null){
+        if (textFile != null)
+        {
             textLines = (textFile.text.Split('\n'));
         }
 
-        if(endAtLine == 0){
+        if (endAtLine == 0)
+        {
             endAtLine = textLines.Length - 1;
-        }        
-
-        if(isActive){
-            EnableTextBox();
-        } else {
-            DisableTextBox();
         }
-    
+
+
+
     }
 
     void Update()
@@ -60,7 +55,7 @@ public class textBoxManager : MonoBehaviour
             currentLine += 2;
         }
 
-        if(currentLine == endAtLine){
+        if(currentLine >= endAtLine){
             DisableTextBox();
         }
     }
@@ -74,24 +69,18 @@ public class textBoxManager : MonoBehaviour
 
     public void EnableTextBox(int currentLine, int endAtLine)
     {
-        textBox.SetActive(true);
-        isActive = true;
         this.currentLine = currentLine;
         this.endAtLine = endAtLine;
+        textBox.SetActive(true);
+        isActive = true;
         
     }
 
     public void DisableTextBox(){
         textBox.SetActive(false);
         isActive = false;
-        player.CallMoveToCenter(!gameStart);
-        currentLine = 0;
+        timeline.Next();
 
-
-        if (boss != null)
-        { 
-            boss.GetComponent<BossMovement>().SetPlayerIsMoving(true);
-        }
     }
 
     public void ReloadScript(TextAsset theText){
@@ -101,10 +90,10 @@ public class textBoxManager : MonoBehaviour
         }
     }
 
-    public void SetGameStart(bool gameStart)
-    {
-        this.gameStart = gameStart;
-    }
+    //public void SetGameStart(bool gameStart)
+    //{
+    //    this.gameStart = gameStart;
+    //}
 
 
 
