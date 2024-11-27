@@ -3046,6 +3046,7 @@ MonoBehaviour:
   toastEnemyPrefab: {fileID: 8836420725665616122, guid: 3ae5165d2db682c43b4e0dddff4c5906, type: 3}
   catEnemyPrefab: {fileID: 8836420725665616122, guid: 93939f6c9081abb4598f4fcda768037a, type: 3}
   spawnInterval: 6
+  spawnFrequency: 0
   canSpawn: 1
 --- !u!4 &1126829604
 Transform:
