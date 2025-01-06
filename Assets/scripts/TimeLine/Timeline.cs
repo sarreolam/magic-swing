@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,8 @@ public class Timeline : MonoBehaviour
     public BossMovement boss;
     public CameraShake cameraShake;
 
+    public GameObject pauseMenuUI;
+
 
     public string[] timeline;
     //"text","calltocenter", "enemyappears", "text","enemyleaves","gamestart" 
@@ -24,9 +27,21 @@ public class Timeline : MonoBehaviour
     public int[] textEndLines;
     int currentText = 0;
 
+    private float previousTimeScale;
+    private bool isPaused = false;
+
+
+
     private void Start()
     {
         Run();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
     }
 
     public void Next()
@@ -79,5 +94,21 @@ public class Timeline : MonoBehaviour
     public void CallCameraShake(float intensity, float shakeDuration)
     {
         cameraShake.ShakeCamera(intensity, shakeDuration);
+    }
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
+            pauseMenuUI.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = previousTimeScale;
+            pauseMenuUI.SetActive(false);
+        }
     }
 }

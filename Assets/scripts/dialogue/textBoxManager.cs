@@ -5,6 +5,9 @@ using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
 
+
+/// Administra los cuadros de texto que muestran diálogo en pantalla, incluyendo el texto del diálogo y el hablante.
+
 public class textBoxManager : MonoBehaviour
 {
     public GameObject textBox;
@@ -12,7 +15,7 @@ public class textBoxManager : MonoBehaviour
     public TextMeshProUGUI theSpeaker;
 
     public TextAsset textFile;
-    public string[] textLines;
+    public string   [] textLines;
 
     public Timeline timeline;
     
@@ -20,19 +23,16 @@ public class textBoxManager : MonoBehaviour
     public int endAtLine;
 
     public bool isActive;
-    //bool gameStart = false;
 
-
-    //public PlayerController player;
 
     void Start()
     {
-        //player = FindObjectOfType<PlayerController>;
-
+        // Carga las líneas del archivo de texto en el arreglo si está disponible.
         if (textFile != null)
         {
             textLines = (textFile.text.Split('\n'));
         }
+        // Si no se define un valor para `endAtLine`, se usa la última línea del archivo.
 
         if (endAtLine == 0)
         {
@@ -60,13 +60,16 @@ public class textBoxManager : MonoBehaviour
         }
     }
 
+    /// Activa el cuadro de texto y permite mostrar diálogos.
     public void EnableTextBox()
     {
         textBox.SetActive(true);
         isActive = true;
 
     }
-
+    /// Activa el cuadro de texto, especificando las líneas de inicio y fin.
+    /// <param name="currentLine">Línea inicial.</param>
+    /// <param name="endAtLine">Línea final.</param>
     public void EnableTextBox(int currentLine, int endAtLine)
     {
         this.currentLine = currentLine;
@@ -75,14 +78,15 @@ public class textBoxManager : MonoBehaviour
         isActive = true;
         
     }
-
+    /// Desactiva el cuadro de texto y avanza en la línea de tiempo del juego.
     public void DisableTextBox(){
         textBox.SetActive(false);
         isActive = false;
         timeline.Next();
 
     }
-
+    /// Recarga un nuevo archivo de texto para cambiar los diálogos.
+    /// <param name="theText">Archivo de texto con los nuevos diálogos.</param>
     public void ReloadScript(TextAsset theText){
         if(theText != null){
             textLines = new string[1];

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+/// Controla el movimiento de un personaje llamado "BadGal" entre posiciones específicas en el escenario.
+
 public class BadGal : MonoBehaviour
 {
 
@@ -13,16 +16,9 @@ public class BadGal : MonoBehaviour
 
     public Vector3 outSidePosition = new Vector3(15,0,0);
     public Vector3 insidePosition = new Vector3(4,0,0);
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
+
+    /// Inicia el movimiento del personaje hacia el centro del escenario.
 
     public void CallMoveToCenter()
     {
@@ -31,6 +27,8 @@ public class BadGal : MonoBehaviour
             moveCoroutine = StartCoroutine(MoveToCenter());
         }
     }
+
+    /// Corrutina que mueve al personaje desde su posición actual hacia el centro.
 
     IEnumerator MoveToCenter()
     {
@@ -45,6 +43,8 @@ public class BadGal : MonoBehaviour
         moveCoroutine = null;
     }
 
+    /// Inicia el movimiento del personaje hacia el borde del escenario.
+
     public void CallMoveToSide()
     {
         if (moveCoroutine == null)
@@ -52,6 +52,9 @@ public class BadGal : MonoBehaviour
             moveCoroutine = StartCoroutine(MoveToSide());
         }
     }
+
+    /// Corrutina que mueve al personaje desde su posición actual hacia un borde del escenario.
+
     IEnumerator MoveToSide()
     {
         while (transform.position != outSidePosition)

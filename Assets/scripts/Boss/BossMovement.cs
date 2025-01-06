@@ -5,6 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+/// Controla el movimiento y comportamiento general del jefe durante la batalla.
+
 public class BossMovement : MonoBehaviour
 {
     public float speed = 1.0f;
@@ -39,28 +43,16 @@ public class BossMovement : MonoBehaviour
         healthbar.SetMaxHealth(maxHealth);
     }
 
-
-    //void Update()
-    //{
-    //    if (!startBattle)
-    //    {
-    //        if (Vector3.Distance(transform.position, bossPosition) > 0 || !playerIsMoving)
-    //        {
-    //            transform.position = Vector2.MoveTowards(transform.position, bossPosition, speed * Time.deltaTime);
-    //        }
-    //        else
-    //        {
-    //            Player.GetComponent<Player>().SetGameStart(true);
-    //            BossArm.GetComponent<BossAtack>().setStartBattle(true);
-    //            startBattle = true;
-    //        }
-    //    }
-    //}
+ 
+    /// Establece si el jugador está en movimiento.
 
     public void SetPlayerIsMoving(bool playerIsMoving)
     {
         this.playerIsMoving = playerIsMoving;
     }
+
+
+    /// Detecta colisiones con proyectiles y aplica daño al jefe.
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -84,6 +76,10 @@ public class BossMovement : MonoBehaviour
         }
     }
 
+
+    /// Inicia el movimiento del jefe hacia su posición inicial de batalla.
+
+
     public void CallMoveToPosition()
     {
         if (moveCoroutine == null)
@@ -91,6 +87,9 @@ public class BossMovement : MonoBehaviour
             moveCoroutine = StartCoroutine(MoveToPosition());
         }
     }
+
+    /// Corrutina para mover al jefe hacia su posición inicial de batalla.
+
 
     IEnumerator MoveToPosition()
     {
@@ -106,6 +105,10 @@ public class BossMovement : MonoBehaviour
         moveCoroutine = null;
     }
 
+
+
+    /// Inicia el movimiento del jefe hacia su posición tras ser derrotado.
+
     public void CallDefeat()
     {
         if (moveCoroutine == null)
@@ -113,6 +116,10 @@ public class BossMovement : MonoBehaviour
             moveCoroutine = StartCoroutine(MoveToDefeat());
         }
     }
+
+
+
+    /// Corrutina para mover al jefe hacia su posición tras ser derrotado.
 
     IEnumerator MoveToDefeat()
     {
@@ -128,6 +135,10 @@ public class BossMovement : MonoBehaviour
         moveCoroutine = null;
     }
 
+
+
+    /// Activa o desactiva la batalla del jefe. 
+ 
     public void SetStartBattle(bool startBattle)
     {
         BossArm.GetComponent<BossAtack>().setStartBattle(startBattle);

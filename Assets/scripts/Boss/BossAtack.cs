@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+/// <summary>
+/// Controla los ataques del jefe y su movimiento vertical durante la batalla.
+/// </summary>
 public class BossAtack : MonoBehaviour
 {
 
@@ -26,7 +30,8 @@ public class BossAtack : MonoBehaviour
 
     public GameObject boss;
 
-    // Update is called once per frame
+
+    /// Se ejecuta en cada cuadro; maneja el movimiento vertical y el comportamiento de ataque del jefe.
     void Update()
     {
         topPostion = new Vector3(1, 3, 0) + boss.transform.position;
@@ -51,6 +56,7 @@ public class BossAtack : MonoBehaviour
                 {
                     moveUp = true;
                 }
+                // Determina aleatoriamente si el jefe debe atacar.
                 if (Random.Range(0, 600) < 1) //(Random.Range(0, 100) < 50)
                 {
                     originalPosition = transform.position;
@@ -85,10 +91,19 @@ public class BossAtack : MonoBehaviour
         }
     }
 
+
+    /// Establece si el jefe puede atacar.
+
+    /// <param name="canAttack">Estado de ataque.</param>
     public void setCanAttack(bool canAttack)
     {
         this.canAttack = canAttack;
     }
+
+
+    /// Activa o desactiva la batalla del jefe.
+
+    /// <param name="startBattle">Estado de la batalla.</param>
     public void setStartBattle(bool startBattle)
     {
         this.startBattle = startBattle;

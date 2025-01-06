@@ -4,6 +4,9 @@ using System.Threading;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+
+/// Clase que controla el movimiento y comportamiento de diferentes tipos de enemigos.
+
 public class EnemyMovement : MonoBehaviour
 {
     public float speed;
@@ -55,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        // Comportamiento basado en el tipo de enemigo
         if (enemyType == 0)
         {
             Vector2 direction = (player.transform.position - transform.position).normalized;

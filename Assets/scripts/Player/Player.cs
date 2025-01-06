@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// Clase que controla el comportamiento del jugador, incluyendo movimiento, colisiones,
+/// invulnerabilidad, y su interacción con otros sistemas como enemigos y el HUD.
+
 public class Player : MonoBehaviour
 {
     Rigidbody2D player;
@@ -50,11 +54,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        // Solo permitir movimiento si `canMove` es verdadero
         if (canMove)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
         }
+        // Verificar si el jugador está muerto
         if (currentHealth <= 0)
         {
             menuManager.GameOver();
@@ -64,14 +70,19 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Aplicar movimiento
         Vector2 movement = new Vector2(horizontal * speed, vertical * speed);
         player.velocity = movement;
+        // Asegurar que el jugador permanezca dentro de los límites si el juego ha comenzado
 
         if (gameStart)
         {
             ClampPlayerWithinBounds();
         }
     }
+
+    /// Restringe la posición del jugador dentro de los límites establecidos.
+
     private void ClampPlayerWithinBounds()
     {
 
@@ -87,6 +98,8 @@ public class Player : MonoBehaviour
 
         player.position = clampedPosition;
     }
+
+    /// Maneja colisiones con diferentes objetos, como enemigos y sus proyectiles.
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -109,6 +122,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    /// Mueve al jugador hacia el centro del escenario, útil para transiciones.
 
     public void CallMoveToCenter()
     {
@@ -117,6 +131,8 @@ public class Player : MonoBehaviour
             moveCoroutine = StartCoroutine(MoveToCenter()); 
         }
     }
+
+    /// Mueve al jugador hacia el centro del escenario, útil para transiciones.
 
     IEnumerator MoveToCenter()
     {
@@ -134,11 +150,7 @@ public class Player : MonoBehaviour
         moveCoroutine = null;
     }
 
-    //public void StartTextBoxes()
-    //{
-    //    textBoxManager.EnableTextBox();
-    //    textBoxManager.SetGameStart(true);
-    //}
+
 
 
     public void SetCanMove(bool canMove)
