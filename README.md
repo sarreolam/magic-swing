@@ -48,7 +48,7 @@ Cinemachine: Ensure the Cinemachine package is installed via the Unity Package M
 
 ### 📧 Contact
 Have questions or feedback? Reach out:
-- Email: 0252028@up.edu.mx
+- Email: 0252028@up.edu.mx, 0253075@up.edu.mx, 0253139@up.edu.mx
 
 
 
